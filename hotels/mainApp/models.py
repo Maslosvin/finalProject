@@ -1,23 +1,21 @@
 from django.db import models
 
-# Модель для представления отдельной комнаты в отеле
+
 class Room(models.Model):
     id = models.AutoField(primary_key=True)
-    hotel_name = models.CharField(max_length=100)  # Название отеля
-    room_number = models.CharField(max_length=10)  # Номер комнаты
-    capacity = models.TextField()  # Вместимость комнаты
-    price = models.DecimalField(max_digits=10, decimal_places=2)  # Цена за проживание
-    rating = models.DecimalField(max_digits=3, decimal_places=2)  # Рейтинг комнаты
-
-# Модель для хранения информации о бронировании комнаты
+    hotel_name = models.CharField(max_length=100)
+    room_number = models.CharField(max_length=10)
+    capacity = models.IntegerField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    rating = models.DecimalField(max_digits=3, decimal_places=2)
 class Reservation(models.Model):
     id = models.AutoField(primary_key=True)
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)  # Связь с комнатой
-    check_in_date = models.DateField()  # Дата заезда
-    check_out_date = models.DateField()  # Дата выезда
-    guest_count = models.IntegerField()  # Количество гостей
-    services = models.TextField()  # Дополнительные услуги
-    total_price = models.DecimalField(max_digits=10, decimal_places=2)  # Общая цена бронирования
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    check_in_date = models.DateField()
+    check_out_date = models.DateField()
+    guest_count = models.IntegerField()
+    services = models.TextField()
+    total_price = models.DecimalField(max_digits=10, decimal_places=2)
 
 # Модель для хранения информации о госте
 class Guest(models.Model):

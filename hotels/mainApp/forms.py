@@ -7,3 +7,8 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields=['username','email','password1','password2']
+
+class ReservationForm(forms.Form):
+    check_in_date = forms.DateField(label='Дата заезда')
+    check_out_date = forms.DateField(label='Дата выезда')
+    guest_count = forms.IntegerField(label='Количество гостей')

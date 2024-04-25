@@ -19,7 +19,6 @@
         <button type="submit" class="search_hotel_button">Найти</button>
     </form>
 
-    <form method="POST">
         {% if hotels %}
 <h1>Информация об отеле:</h1>
         {% for room in hotels %}
@@ -35,7 +34,16 @@
 
 </ul>
 
-    </form>
+
+    <!-- <form action="{% url 'payment-page' %}" method="get">
+        <button type="submit" class="paymentPageBtn">Оплатить</button>
+    </form> -->
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Забронировать">
+</form>
+
 
 </body>
 </html>
