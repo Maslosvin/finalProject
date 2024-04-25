@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}" type="text/css">
+    <link rel="icon" href="{% static 'ico/favicon.ico' %}" type="image/x-icon">
+    <title>Регистрация</title>
+</head>
+<body>
+
+<header>
+    <h1>Регистрация</h1>
+</header>
+
+<main>
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Регистрация</legend>
+            {{ reg_form }}
+        </fieldset>
+        <button type="submit" class="btn btn-outline-info">Зарегистрироваться</button>
+    </form>
+</main>
+
+<footer>
+    <div class="border-top pt-3">
+        <a href="{% url 'login' %}">Авторизоваться</a>
+    </div>
+</footer>
+
+</body>
+</html>

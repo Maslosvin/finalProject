@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'ico/favicon.ico' %}" type="image/x-icon">
+    <title>Поиск отеля</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+</head>
+<body>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="search_query" class="search_hotel">
+        <button type="submit" class="search_hotel_button">Найти</button>
+    </form>
+
+    <form method="POST">
+        {% if hotels %}
+<h1>Информация об отеле:</h1>
+        {% for room in hotels %}
+            <li>Название: {{ room.hotel_name }}</li>
+            <li>Кол-в квадратных метров: {{ room.capacity }}</li>
+            <li>Цена за день: {{ room.price }}</li>
+            <li>Рейтинг: {{ room.rating }}</li>
+        {% endfor %}
+        {% else %}
+        Не найдено
+        {% endif %}
+<ul>
+
+</ul>
+
+    </form>
+
+</body>
+</html>
