@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Room(models.Model):
@@ -17,17 +18,11 @@ class Reservation(models.Model):
     services = models.TextField()
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
 
-# Модель для хранения информации о госте
-class Guest(models.Model):
-    id = models.AutoField(primary_key=True)
-    full_name = models.CharField(max_length=100)  # Полное имя
-    email = models.EmailField()  # Email гостя
-    phone = models.CharField(max_length=20)  # Номер телефона
 
 # Модель для связи гостя с бронировкой комнаты
 class Booking(models.Model):
     id = models.AutoField(primary_key=True)
-    guest = models.ForeignKey(Guest, on_delete=models.CASCADE)  # Связь с гостем
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)  # Связь с гостем
     reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE)  # Связь с бронировкой
     additional_services = models.TextField()  # Дополнительные услуги
     payment_status = models.CharField(max_length=20)  # Статус оплаты

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .models import Room, Reservation, Booking, Notification
+from .models import Room, Reservation, Booking, Notification, User
 from .forms import ReservationForm
 
 # Перенаправление на страницу hotels-main в случае попадения на страницу с отсутствующим доменом
@@ -38,19 +38,18 @@ def main_page_view(request):
 
     return render(request, 'mainPage.html', context)
 
-
+# цена = цена отеля за день * на (дата выезда - дата въезда) * на кол-во гостей
 def calculate_total_price(room, check_in_date, check_out_date, guest_count):
-    # Здесь проводите расчет итоговой цены, например, на основе цены за номер, количества дней проживания и количества гостей
-    total_price = room.price_per_night * (check_out_date - check_in_date).days * guest_count
+    total_price = room.price * (check_out_date - check_in_date).days * guest_count
     return total_price
 
 
 def reserve_hotel_view(request):
     message = ""
     context = {}
-
     if request.method == 'POST':
         search_query = request.POST.get('search_query')
+
 
         if search_query != "":
             hotels = Room.objects.filter(hotel_name__icontains=search_query)
@@ -58,23 +57,44 @@ def reserve_hotel_view(request):
 
         form = ReservationForm(request.POST)
         if form.is_valid():
-            check_in_date = form.cleaned_data['check_in_date']
-            check_out_date = form.cleaned_data['check_out_date']
-            guest_count = form.cleaned_data['guest_count']
+            # Сохраняем значения даты и количества гостей из POST-запроса
+            check_in_date = request.POST.get('check_in_date')
+            check_out_date = request.POST.get('check_out_date')
+            guest_count = request.POST.get('guest_count')
+            print(check_in_date, check_out_date, guest_count, search_query)
+            # Сохраняем резервацию в базе данных
 
-            # Save reservation to the database
-            reservation = Reservation(room=Room, check_in_date=check_in_date, check_out_date=check_out_date,
-                                      guest_count=guest_count)
-            reservation.save()
-
-            context['form'] = form
+            # Передаем значения даты и количества гостей обратно на страницу
+            form.fields['check_in_date'].initial = check_in_date
+            form.fields['check_out_date'].initial = check_out_date
+            form.fields['guest_count'].initial = guest_count
+            room = Room.select(Room.hotel_name == search_query).get()
+            total_price = calculate_total_price(room,check_in_date, check_out_date, guest_count)
+            context = {'form': form, 'totalprice': total_price}
 
 
     else:
         form = ReservationForm()
-        context = {'form': form, 'message': message, }
+        context = {'form': form, 'message': message}
 
     return render(request, 'reserveHotel.html', context)
+
+
+def profile_view(request):
+    if request.user.is_authenticated:  # Проверяем, авторизован ли пользователь
+        user_id = request.user.id
+
+        # Получаем данные о госте и его бронированиях
+        user = User.objects.get(user_id=user_id)
+        bookings = Booking.objects.filter(user=user)
+
+        context = {
+            'full_name': user.full_name,  # Имя пользователя
+            'bookings': bookings,  # Список бронированных отелей
+        }
+        return render(request, 'profilePage.html', context)
+    else:
+        return redirect('login')  # В случае если пользователь не авторизован, перенаправляем на страницу входа
 
 def payment_view(request):
         pass

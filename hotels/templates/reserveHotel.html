@@ -13,11 +13,14 @@
 </head>
 <body>
 
-    <form method="POST">
-        {% csrf_token %}
-        <input type="text" name="search_query" class="search_hotel">
-        <button type="submit" class="search_hotel_button">Найти</button>
-    </form>
+<form method="POST" action="{% url 'reserve-hotel' %}">
+    {% csrf_token %}
+    <input type="text" name="search_query" class="search_hotel">
+    <input type="date" name="check_in_date" value="{{ form.check_in_date.value }}">
+    <input type="date" name="check_out_date" value="{{ form.check_out_date.value }}">
+    <input type="number" name="guest_count" value="{{ form.guest_count.value }}">
+    <button type="submit" name="find" class="search_hotel_button">Найти</button>
+</form>
 
         {% if hotels %}
 <h1>Информация об отеле:</h1>
@@ -30,17 +33,13 @@
         {% else %}
         Не найдено
         {% endif %}
-<ul>
 
-</ul>
+<h1>Итоговая цена:</h1>
+<br>
+{{ totalprice }}
 
-
-    <!-- <form action="{% url 'payment-page' %}" method="get">
-        <button type="submit" class="paymentPageBtn">Оплатить</button>
-    </form> -->
-<form method="POST">
+<form action="{% url 'payment-page' %}" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
     <input type="submit" value="Забронировать">
 </form>
 
