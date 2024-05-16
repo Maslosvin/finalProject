@@ -1,0 +1,49 @@
+.nadpis {
+    position: relative;
+    width: center;  /* Увеличиваем ширину кнопки */
+    height: center;  /* Увеличиваем высоту кнопки */
+    left: 0px;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    top: 700px; /* Переопределяем значение */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Nosifer", sans-serif;
+    font-weight: 600;
+    font-size: 35px;  /* Увеличиваем размер шрифта */
+    font-style: normal;
+    text-shadow:#0f0f0f 2.5px 1.25px;
+    color: red;  /* Меняем цвет шрифта на белый */
+}
+
+.htmlMainPage {
+    background-image: url("../img/background-main-page.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.htmlPaymentPage {
+    background-image: url("../img/background-payment-page.png");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.hotelList {
+    position: relative;
+    width: center;  /* Увеличиваем ширину кнопки */
+    height: center;  /* Увеличиваем высоту кнопки */
+    left: -600px;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    top: -10px; /* Переопределяем значение */
+    bottom: 80px;  /* Переопределяем значение */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Nosifer", sans-serif;
+    font-weight: 800;
+    font-size: 20px;  /* Увеличиваем размер шрифта */
+    font-style: normal;
+    text-shadow:#0f0f0f 2.5px 1.25px;
+    color: white;  /* Меняем цвет шрифта на белый */
+    }

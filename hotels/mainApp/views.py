@@ -49,30 +49,28 @@ def reserve_hotel_view(request):
     context = {}
     if request.method == 'POST':
         search_query = request.POST.get('search_query')
-
-
-        if search_query != "":
-            hotels = Room.objects.filter(hotel_name__icontains=search_query)
-            context = {'hotels': hotels, 'search_query': search_query, 'message': message}
-
         form = ReservationForm(request.POST)
+
         if form.is_valid():
-            # Сохраняем значения даты и количества гостей из POST-запроса
-            check_in_date = request.POST.get('check_in_date')
-            check_out_date = request.POST.get('check_out_date')
-            guest_count = request.POST.get('guest_count')
-            print(check_in_date, check_out_date, guest_count, search_query)
-            # Сохраняем резервацию в базе данных
+            check_in_date = form.cleaned_data['check_in_date']
+            check_out_date = form.cleaned_data['check_out_date']
+            guest_count = form.cleaned_data['guest_count']
 
-            # Передаем значения даты и количества гостей обратно на страницу
-            form.fields['check_in_date'].initial = check_in_date
-            form.fields['check_out_date'].initial = check_out_date
-            form.fields['guest_count'].initial = guest_count
-            room = Room.select(Room.hotel_name == search_query).get()
-            total_price = calculate_total_price(room,check_in_date, check_out_date, guest_count)
-            context = {'form': form, 'totalprice': total_price}
-
-
+            if search_query:
+                hotels = Room.objects.filter(hotel_name__icontains=search_query)
+                if hotels.exists():
+                    room = hotels.first()
+                    total_price = calculate_total_price(room, check_in_date, check_out_date, guest_count)
+                    context = {'form': form, 'hotels': hotels, 'search_query': search_query, 'totalprice': total_price}
+                else:
+                    message = "Не удалось найти отель с таким именем."
+                    context = {'form': form, 'message': message}
+            else:
+                message = "Выберите отель для продолжения."
+                context = {'form': form, 'message': message}
+        else:
+            message = "Форма заполнена неверно. Пожалуйста, исправьте ошибки."
+            context = {'form': form, 'message': message}
     else:
         form = ReservationForm()
         context = {'form': form, 'message': message}
@@ -97,4 +95,4 @@ def profile_view(request):
         return redirect('login')  # В случае если пользователь не авторизован, перенаправляем на страницу входа
 
 def payment_view(request):
-        pass
+    return render(request, 'paymentPage.html')

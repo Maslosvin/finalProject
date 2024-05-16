@@ -22,6 +22,8 @@
     <button type="submit" name="find" class="search_hotel_button">Найти</button>
 </form>
 
+
+
         {% if hotels %}
 <h1>Информация об отеле:</h1>
         {% for room in hotels %}
@@ -34,9 +36,9 @@
         Не найдено
         {% endif %}
 
-<h1>Итоговая цена:</h1>
-<br>
-{{ totalprice }}
+{% if totalprice %}
+   <p>Итоговая цена: {{ totalprice }}</p>
+{% endif %}
 
 <form action="{% url 'payment-page' %}" method="post">
     {% csrf_token %}

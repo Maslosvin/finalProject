@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="ru">
+<html class="htmlMainPage" lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{% static 'ico/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}" type="text/css">
     <title>Главная страница</title>
 </head>
 <body>
@@ -15,31 +16,35 @@
 <br>
 <a href="{% url 'profile' %}"><button>Профиль</button></a>
 
-<h1>Список отелей:</h1>
-<ul>
-    {% for room in rooms %}
-        <li>{{ room.hotel_name }}</li>
-    {% endfor %}
-</ul>
+<div class="hotelList">
+    <div>
+        <h1>Список отелей:</h1>
+        <ul>
+            {% for room in rooms %}
+            <li>{{ room.hotel_name }}</li>
+             {% endfor %}
+        </ul>
+    </div>
+</div>
 
-<h1>Последние заказы:</h1>
-<ul>
-    {% for order in orders %}
-        <li>Товары:
-            {% for product in order.product.all %}
-                {{ product.title }},
-            {% endfor %}
-            (Self Pickup Point: {{ order.pickup_point }}, Receive Date: {{ order.receive_date }})
-        </li>
-    {% endfor %}
-</ul>
+<!--<h1>Последние заказы:</h1>-->
+<!--<ul>-->
+<!--    {% for order in orders %}-->
+<!--        <li>Товары:-->
+<!--            {% for product in order.product.all %}-->
+<!--                {{ product.title }},-->
+<!--            {% endfor %}-->
+<!--            (Self Pickup Point: {{ order.pickup_point }}, Receive Date: {{ order.receive_date }})-->
+<!--        </li>-->
+<!--    {% endfor %}-->
+<!--</ul>-->
 
-<h1>Забронированные товары:</h1>
-<ul>
-    {% for reservation in reservations %}
-        <li>{{ reservation.product.title }} (Reservation Date: {{ reservation.reservation_date }})</li>
-    {% endfor %}
-</ul>
+<!--<h1>Забронированные товары:</h1>-->
+<!--<ul>-->
+<!--    {% for reservation in reservations %}-->
+<!--        <li>{{ reservation.product.title }} (Reservation Date: {{ reservation.reservation_date }})</li>-->
+<!--    {% endfor %}-->
+<!--</ul>-->
 
 <a href="{% url 'reserve-hotel' %}"><button>Забронировать отель</button></a>
 

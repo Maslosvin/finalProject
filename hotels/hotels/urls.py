@@ -27,5 +27,7 @@ urlpatterns = [
     path('hotels-main/', main_page_view, name='hotels-main'),
     path('reserve-hotel/', reserve_hotel_view, name='reserve-hotel'),
     path('payment-page/', payment_view, name='payment-page'),
+    path('accounts/profile/', redirect_to_main, name='accounts-profile'),
     path('profile/', profile_view, name='profile')
+
 ]

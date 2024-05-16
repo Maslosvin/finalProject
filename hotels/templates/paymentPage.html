@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="ru">
+{% load static %}
+<html class="htmlPaymentPage" lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Страница Оплаты</title>
+    <link rel="icon" href="{% static 'ico/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}" type="text/css">
 </head>
-<body>
+<body >
+<h1 class="nadpis">(ЗДЕСЬ ДОЛЖНА БЫТЬ СТРАНИЦА ОПЛАТЫ ПРЕДОСТАВЛЕННАЯ БАНКОМ)</h1>
+<a href="{% url 'hotels-main' %}"><button>Вернуться на главную</button></a>
 
 </body>
 </html>
