@@ -14,40 +14,47 @@
 </head>
 <body>
 
-<form method="POST" action="{% url 'reserve-hotel' %}">
+<form class="reserveHotelFields" method="POST" action="{% url 'reserve-hotel' %}">
     {% csrf_token %}
     <input type="text" name="search_query" class="search_hotel">
-    <input type="date" name="check_in_date" value="{{ form.check_in_date.value }}">
-    <input type="date" name="check_out_date" value="{{ form.check_out_date.value }}">
-    <input type="number" name="guest_count" value="{{ form.guest_count.value }}">
+    <input type="date" name="check_in_date" class="check_in_date" value="{{ form.check_in_date.value }}">
+    <input type="date" name="check_out_date" class="check_out_date" value="{{ form.check_out_date.value }}">
+    <input type="number" name="guest_count" class="guest_count" value="{{ form.guest_count.value }}">
     <button type="submit" name="find" class="search_hotel_button">Найти</button>
 </form>
 
 
 
         {% if hotels %}
-<h1>Информация об отеле:</h1>
+<h1 class="hotelInfoText">Информация об отеле:</h1>
+
+<div class="hotelInfo">
         {% for room in hotels %}
+    <ul>
             <li>Название: {{ room.hotel_name }}</li>
+            <br>
             <li>Кол-в квадратных метров: {{ room.capacity }}</li>
+            <br>
             <li>Цена за день: {{ room.price }}</li>
+            <br>
             <li>Рейтинг: {{ room.rating }}</li>
+    </ul>
+     <form action="{% url 'payment-page' %}" method="post">
+        {% csrf_token %}
+       <input  type="submit" value="Забронировать" class="bookingBtn">
+    </form>
         {% endfor %}
         {% else %}
         Не найдено
         {% endif %}
-
-{% if totalprice %}
-   <p>Итоговая цена: {{ totalprice }}</p>
-{% endif %}
-<div class="bookingBtn">
-    <form action="{% url 'payment-page' %}" method="post">
-        {% csrf_token %}
-       <input type="submit" value="Забронировать">
-    </form>
 </div>
-<!--<br>-->
-<!--<a href="{% url 'payment-page' %}"><button class="bookingBtn">Забронировать</button></a>-->
+{% if totalprice %}
+   <p class="totalPrice">Итоговая цена: {{ totalprice }}</p>
+{% endif %}
+
+
+
+
 
 </body>
 </html>

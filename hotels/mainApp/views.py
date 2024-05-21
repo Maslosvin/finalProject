@@ -50,7 +50,6 @@ def reserve_hotel_view(request):
     if request.method == 'POST':
         search_query = request.POST.get('search_query')
         form = ReservationForm(request.POST)
-
         if form.is_valid():
             check_in_date = form.cleaned_data['check_in_date']
             check_out_date = form.cleaned_data['check_out_date']
@@ -74,6 +73,8 @@ def reserve_hotel_view(request):
     else:
         form = ReservationForm()
         context = {'form': form, 'message': message}
+
+
 
     return render(request, 'reserveHotel.html', context)
 
