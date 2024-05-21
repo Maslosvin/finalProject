@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="ru">
+<html class="htmlReserveHotel" lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}" type="text/css">
 </head>
 <body>
 
@@ -39,12 +40,14 @@
 {% if totalprice %}
    <p>Итоговая цена: {{ totalprice }}</p>
 {% endif %}
-
-<form action="{% url 'payment-page' %}" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Забронировать">
-</form>
-
+<div class="bookingBtn">
+    <form action="{% url 'payment-page' %}" method="post">
+        {% csrf_token %}
+       <input type="submit" value="Забронировать">
+    </form>
+</div>
+<!--<br>-->
+<!--<a href="{% url 'payment-page' %}"><button class="bookingBtn">Забронировать</button></a>-->
 
 </body>
 </html>

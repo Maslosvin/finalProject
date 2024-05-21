@@ -11,7 +11,7 @@
     font-weight: 600;
     font-size: 35px;  /* Увеличиваем размер шрифта */
     font-style: normal;
-    text-shadow:#0f0f0f 2.5px 1.25px;
+    text-shadow: #0f0f0f 2.5px 1.25px;
     color: red;  /* Меняем цвет шрифта на белый */
 }
 
@@ -29,12 +29,19 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+.htmlReserveHotel {
+    background-image: url("../img/background-reserve-hotel.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
 
 .hotelList {
     position: relative;
     width: center;  /* Увеличиваем ширину кнопки */
     height: center;  /* Увеличиваем высоту кнопки */
-    left: -600px;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    left: -800px;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
     top: -10px; /* Переопределяем значение */
     bottom: 80px;  /* Переопределяем значение */
     display: flex;
@@ -44,6 +51,119 @@
     font-weight: 800;
     font-size: 20px;  /* Увеличиваем размер шрифта */
     font-style: normal;
-    text-shadow:#0f0f0f 2.5px 1.25px;
+    text-shadow: #0f0f0f 3px 2px;
     color: white;  /* Меняем цвет шрифта на белый */
     }
+
+.reserveHotelBtn {
+    position: relative;
+    width: center;  /* Увеличиваем ширину кнопки */
+    height: center;  /* Увеличиваем высоту кнопки */
+    left: center;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    top: center; * Переопределяем значение */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     font-family: "Nosifer", sans-serif;
+    font-weight: 800;
+    font-size: 30px;  /* Увеличиваем размер шрифта */
+    font-style: normal;
+    text-shadow: #0f0f0f 2.5px 1.25px;
+    color: white;  /* Меняем цвет шрифта на белый */
+    background: black;
+    border-radius: 10px;
+}
+
+.profileBtn {
+    position: relative;
+    width: center;  /* Увеличиваем ширину кнопки */
+    height: center;  /* Увеличиваем высоту кнопки */
+    left: center;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    top: center; * Переопределяем значение */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     font-family: "Nosifer", sans-serif;
+    font-weight: 800;
+    font-size: 18px;  /* Увеличиваем размер шрифта */
+    font-style: normal;
+    text-shadow: #0f0f0f 2.5px 1.25px;
+    color: white;  /* Меняем цвет шрифта на белый */
+    background: black;
+    border-radius: 10px;
+}
+
+.loginBtn {
+    position: relative;
+    width: center;  /* Увеличиваем ширину кнопки */
+    height: center;  /* Увеличиваем высоту кнопки */
+    left: 230px;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    top: 624px; /* Переопределяем значение */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Nosifer", sans-serif;
+    font-weight: 800;
+    font-size: 18px;  /* Увеличиваем размер шрифта */
+    font-style: normal;
+    text-shadow: #0f0f0f 2.5px 1.25px;
+    color: white;  /* Меняем цвет шрифта на белый */
+    background: black;
+    border-radius: 10px;
+}
+
+.registerBtn {
+    position: relative;
+    width: center;  /* Увеличиваем ширину кнопки */
+    height: center;  /* Увеличиваем высоту кнопки */
+    left: center;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    top: 592px; /* Переопределяем значение */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Nosifer", sans-serif;
+    font-weight: 800;
+    font-size: 18px;  /* Увеличиваем размер шрифта */
+    font-style: normal;
+    text-shadow: #0f0f0f 2.5px 1.25px;
+    color: white;  /* Меняем цвет шрифта на белый */
+    background: black;
+    border-radius: 10px;
+}
+
+.search_hotel_button {
+    position: relative;
+    width: center;  /* Увеличиваем ширину кнопки */
+    height: center;  /* Увеличиваем высоту кнопки */
+    left: 570px;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    top: -25px; /* Переопределяем значение */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Nosifer", sans-serif;
+    font-weight: 800;
+    font-size: 28px;  /* Увеличиваем размер шрифта */
+    font-style: normal;
+    text-shadow: #0f0f0f 2.5px 1.25px;
+    color: white;  /* Меняем цвет шрифта на белый */
+    background: black;
+    border-radius: 10px;
+
+.bookingBtn {
+    position: relative;
+    width: center;  /* Увеличиваем ширину кнопки */
+    height: center;  /* Увеличиваем высоту кнопки */
+    left: 570px;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    top: -25px; /* Переопределяем значение */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Nosifer", sans-serif;
+    font-weight: 800;
+    font-size: 28px;  /* Увеличиваем размер шрифта */
+    font-style: normal;
+    text-shadow: #0f0f0f 2.5px 1.25px;
+    color: white;  /* Меняем цвет шрифта на белый */
+    background: black;
+    border-radius: 10px;
+}

@@ -11,10 +11,7 @@
 </head>
 <body>
 
-<a href="{% url 'register' %}"><button>Зарегистрироваться</button></a>
-<a href="{% url 'login' %}"><button>Авторизоваться</button></a>
-<br>
-<a href="{% url 'profile' %}"><button>Профиль</button></a>
+<a href="{% url 'profile' %}"><button class="profileBtn">Профиль</button></a>
 
 <div class="hotelList">
     <div>
@@ -46,7 +43,10 @@
 <!--    {% endfor %}-->
 <!--</ul>-->
 
-<a href="{% url 'reserve-hotel' %}"><button>Забронировать отель</button></a>
+<a href="{% url 'reserve-hotel' %}"><button class="reserveHotelBtn">Забронировать отель</button></a>
+<br>
+    <a href="{% url 'login' %}"><button class="loginBtn">Авторизоваться</button></a>
+    <a href="{% url 'register' %}"><button class="registerBtn">Зарегистрироваться</button></a>
 
 </body>
 </html>
