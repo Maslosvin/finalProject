@@ -39,10 +39,19 @@
             <br>
             <li>Рейтинг: {{ room.rating }}</li>
     </ul>
-     <form action="{% url 'payment-page' %}" method="post">
-        {% csrf_token %}
-       <input  type="submit" value="Забронировать" class="bookingBtn">
+
+<!--     <form action="{% url 'payment-page' %}" method="post">-->
+<!--        {% csrf_token %}-->
+<!--       <input  type="submit" value="Забронировать" class="bookingBtn">-->
+<!--    </form>-->
+
+    <form action="{% url 'reserve-hotel' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="room_id" value="{{ room.id }}">
+    <!-- Другие поля формы -->
+    <button type="submit" class="bookingBtn">Забронировать</button>
     </form>
+
         {% endfor %}
         {% else %}
         Не найдено
@@ -51,10 +60,6 @@
 {% if totalprice %}
    <p class="totalPrice">Итоговая цена: {{ totalprice }}</p>
 {% endif %}
-
-
-
-
 
 </body>
 </html>

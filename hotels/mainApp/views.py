@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import Room, Reservation, Booking, Notification, User
 from .forms import ReservationForm
+from django.contrib.auth.models import User
 
 # Перенаправление на страницу hotels-main в случае попадения на страницу с отсутствующим доменом
 def redirect_to_main(request):
@@ -44,56 +45,82 @@ def calculate_total_price(room, check_in_date, check_out_date, guest_count):
     return total_price
 
 
+# def reserve_hotel_view(request):
+#     message = ""
+#     context = {}
+#     if request.method == 'POST':
+#         search_query = request.POST.get('search_query')
+#         form = ReservationForm(request.POST)
+#         if form.is_valid():
+#             check_in_date = form.cleaned_data['check_in_date']
+#             check_out_date = form.cleaned_data['check_out_date']
+#             guest_count = form.cleaned_data['guest_count']
+#
+#             if search_query:
+#                 hotels = Room.objects.filter(hotel_name__icontains=search_query)
+#                 if hotels.exists():
+#                     room = hotels.first()
+#                     total_price = calculate_total_price(room, check_in_date, check_out_date, guest_count)
+#                     context = {'form': form, 'hotels': hotels, 'search_query': search_query, 'totalprice': total_price}
+#                 else:
+#                     message = "Не удалось найти отель с таким именем."
+#                     context = {'form': form, 'message': message}
+#             else:
+#                 message = "Выберите отель для продолжения."
+#                 context = {'form': form, 'message': message}
+#         else:
+#             message = "Форма заполнена неверно. Пожалуйста, исправьте ошибки."
+#             context = {'form': form, 'message': message}
+#     else:
+#         form = ReservationForm()
+#         context = {'form': form, 'message': message}
+#
+#
+#
+#     return render(request, 'reserveHotel.html', context)
+
 def reserve_hotel_view(request):
-    message = ""
-    context = {}
     if request.method == 'POST':
-        search_query = request.POST.get('search_query')
         form = ReservationForm(request.POST)
         if form.is_valid():
             check_in_date = form.cleaned_data['check_in_date']
             check_out_date = form.cleaned_data['check_out_date']
             guest_count = form.cleaned_data['guest_count']
 
-            if search_query:
-                hotels = Room.objects.filter(hotel_name__icontains=search_query)
-                if hotels.exists():
-                    room = hotels.first()
-                    total_price = calculate_total_price(room, check_in_date, check_out_date, guest_count)
-                    context = {'form': form, 'hotels': hotels, 'search_query': search_query, 'totalprice': total_price}
-                else:
-                    message = "Не удалось найти отель с таким именем."
-                    context = {'form': form, 'message': message}
-            else:
-                message = "Выберите отель для продолжения."
-                context = {'form': form, 'message': message}
-        else:
-            message = "Форма заполнена неверно. Пожалуйста, исправьте ошибки."
-            context = {'form': form, 'message': message}
+            room_id = request.POST.get('room_id')  # Получаем id выбранного номера
+            room = Room.objects.get(id=room_id)
+
+            # Сохранение данных о бронировании
+            reservation = Reservation.objects.create(
+                room=room,
+                check_in_date=check_in_date,
+                check_out_date=check_out_date,
+                guest_count=guest_count
+            )
+
+            # Перенаправление на страницу оплаты
+            return redirect('payment-page')
     else:
         form = ReservationForm()
-        context = {'form': form, 'message': message}
 
-
-
+    context = {'form': form}
     return render(request, 'reserveHotel.html', context)
 
 
 def profile_view(request):
-    if request.user.is_authenticated:  # Проверяем, авторизован ли пользователь
+    if request.user.is_authenticated:
         user_id = request.user.id
 
-        # Получаем данные о госте и его бронированиях
-        user = User.objects.get(user_id=user_id)
-        bookings = Booking.objects.filter(user=user)
+        user = User.objects.get(id=user_id)
+        bookings = Booking.objects.filter(user_id=user_id)
 
         context = {
-            'full_name': user.full_name,  # Имя пользователя
-            'bookings': bookings,  # Список бронированных отелей
+            'full_name': user.username,  # Заменим на нужный атрибут пользователя
+            'bookings': bookings,
         }
         return render(request, 'profilePage.html', context)
     else:
-        return redirect('login')  # В случае если пользователь не авторизован, перенаправляем на страницу входа
+        return redirect('login')
 
 def payment_view(request):
     return render(request, 'paymentPage.html')

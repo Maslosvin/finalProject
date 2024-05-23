@@ -1,28 +1,21 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Профиль</title>
+    <title>Профиль пользователя</title>
 </head>
 <body>
     <h1>Профиль пользователя: {{ full_name }}</h1>
 
-    <h2>Список забронированных отелей:</h2>
+    <h2>Забронированные отели:</h2>
     <ul>
         {% for booking in bookings %}
             <li>
-                Отель: {{ booking.reservation.room.hotel_name }},
-                Дата заезда: {{ booking.reservation.check_in_date }},
-                Дата выезда: {{ booking.reservation.check_out_date }}
+                <strong>Название отеля:</strong> {{ booking.reservation.room.hotel_name }}<br>
+                <strong>Количество гостей:</strong> {{ booking.reservation.guest_count }}<br>
+                <strong>Дата въезда:</strong> {{ booking.reservation.check_in_date }}<br>
+                <strong>Дата выезда:</strong> {{ booking.reservation.check_out_date }}<br>
             </li>
-        {% empty %}
-            <li>У вас нет забронированных отелей</li>
         {% endfor %}
     </ul>
-
-    <form action="{% url 'hotels-main' %}" method="post">
-        {% csrf_token %}
-        <button type="submit">Выйти из аккаунта</button>
-    </form>
 </body>
 </html>
