@@ -97,7 +97,6 @@ def reserve_hotel_view(request):
                 check_out_date=check_out_date,
                 guest_count=guest_count
             )
-
             # Перенаправление на страницу оплаты
             return redirect('payment-page')
     else:
@@ -108,9 +107,10 @@ def reserve_hotel_view(request):
 
 
 def profile_view(request):
+    print("start_profile")
     if request.user.is_authenticated:
-        user_id = request.user.id
-
+        user_id = request.id
+        print(user_id)
         user = User.objects.get(id=user_id)
         bookings = Booking.objects.filter(user_id=user_id)
 

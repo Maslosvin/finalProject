@@ -24,7 +24,6 @@ class Booking(models.Model):
     id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)  # Связь с гостем
     reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE)  # Связь с бронировкой
-    payment_status = models.CharField(max_length=20)  # Статус оплаты
     booking_date = models.DateTimeField(auto_now_add=True)  # Дата бронирования
 
 # Модель для хранения уведомлений связанных с бронировкой
