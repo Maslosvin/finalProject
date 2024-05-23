@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .models import Room, Reservation, Booking, Notification, User
+from .models import Room, Reservation, Booking, Notification
 from .forms import ReservationForm
 from django.contrib.auth.models import User
 
