@@ -55,6 +55,13 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+.htmlLogin, .hmtlRegister {
+    background-image: url("../img/background-login.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
 
 .hotelList {
     position: relative;
@@ -116,7 +123,7 @@
     position: relative;
     width: center;  /* Увеличиваем ширину кнопки */
     height: center;  /* Увеличиваем высоту кнопки */
-    left: 230px;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    left: 1px;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
     top: 624px; * Переопределяем значение */
     display: flex;
     justify-content: center;
@@ -136,7 +143,7 @@
     width: center;  /* Увеличиваем ширину кнопки */
     height: center;  /* Увеличиваем высоту кнопки */
     left: center;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
-    top: 592px; * Переопределяем значение */
+    top: 625px; * Переопределяем значение */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -338,8 +345,25 @@
     position: relative;
     width: center;  /* Увеличиваем ширину кнопки */
     height: center;  /* Увеличиваем высоту кнопки */
-    left: -800px;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
-    top: -10px; /* Переопределяем значение */
+    left: center;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    top: center; /* Переопределяем значение */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Nosifer", sans-serif;
+    font-weight: 800;
+    font-size: 25px;  /* Увеличиваем размер шрифта */
+    font-style: normal;
+    text-shadow: #0f0f0f 3px 2px ;
+    color: white;  /* Меняем цвет шрифта на белый */
+}
+
+.loginText {
+    position: relative;
+    width: center;  /* Увеличиваем ширину кнопки */
+    height: center;  /* Увеличиваем высоту кнопки */
+    left: -900px;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    top: 10px; /* Переопределяем значение */
     bottom: 80px;  /* Переопределяем значение */
     display: flex;
     justify-content: center;
@@ -350,4 +374,176 @@
     font-style: normal;
     text-shadow: #0f0f0f 3px 2px ;
     color: white;  /* Меняем цвет шрифта на белый */
+}
+
+.loginJoinBtn {
+    position: relative;
+    width: center;  /* Увеличиваем ширину кнопки */
+    height: 35px;  /* Увеличиваем высоту кнопки */
+    left: 0px;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    top: 5px; /* Переопределяем значение */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Nosifer", sans-serif;
+    font-weight: 800;
+    font-size: 25px;  /* Увеличиваем размер шрифта */
+    font-style: normal;
+    text-shadow: #0f0f0f 2.5px 1.25px;
+    color: white;  /* Меняем цвет шрифта на белый */
+    background: black;
+    border-radius: 10px;
+}
+
+.formLogin fieldset {
+    border: none; /* убираем окантовку */
+    font-size: 0.001px
+}
+
+.username-input {
+    position: relative;
+    width: 164px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Nosifer", sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    font-style: normal;
+    color: white;
+    background: black;
+    border: 3px solid white;
+    border-radius: 10px;
+    margin-bottom: 10px; /* добавляем отступ снизу */
+}
+
+.password-input {
+    position: relative;
+    width: 164px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Nosifer", sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    font-style: normal;
+    color: white;
+    background: black;
+    border: 3px solid white;
+    border-radius: 10px;
+    margin-bottom: 10px; /* добавляем отступ снизу */
+}
+
+.username-input input, .password-input input {
+    width: 100%; /* Выравниваем по ширине контейнера */
+    padding: 8px; /* Добавляем внутренний отступ */
+    border: none; /* Убираем границы у поля ввода */
+    background: inherit; /* Наследуем фон у поля ввода */
+    color: inherit;  /* Наследуем цвет текста у поля ввода */
+    outline: none; /* Убираем обводку при фокусе */
+}
+
+.smallRegisterBtn a {
+    position: relative;
+    width: 60px;
+    height: 30px;  /* Увеличиваем высоту кнопки */
+    left: 10px;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    top: 10px; /* Переопределяем значение */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;  /* цвет текста для обычного состояния */
+    text-decoration: none;  /* убираем подчеркивание */
+    transition: color 0.3s;  /* задаем плавный переход при изменении цвета */
+}
+
+.smallRegisterBtn a:hover {
+    color: white;  /* цвет текста при наведении курсора */
+    background-color: black;  /* задаем фон при наведении для контраста */
+    border-radius: 5px;  /* закругляем углы */
+    height: 15px;
+}
+
+.form-group {
+    border: none; /* Убираем границу */
+    padding: 0; /* Убираем отступы внутри элемента */
+}
+body {
+    color: white; /* Устанавливаем белый цвет для основного текста */
+}
+
+.registration-title {
+    position: relative;
+    width: center;  /* Увеличиваем ширину кнопки */
+    height: center;  /* Увеличиваем высоту кнопки */
+    left: -800px;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    top: -10px; /* Переопределяем значение */
+    bottom: 80px;  /* Переопределяем значение */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Nosifer", sans-serif;
+    font-weight: 800;
+    font-size: 20px;  /* Увеличиваем размер шрифта */
+    font-style: normal;
+    text-shadow: #0f0f0f 3px 2px;
+    color: white;  /* Меняем цвет шрифта на белый */
+}
+
+.registerBody {
+    position: relative;
+    width: center;  /* Увеличиваем ширину кнопки */
+    height: center;  /* Увеличиваем высоту кнопки */
+    left: -580px;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    top: center; /* Переопределяем значение */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Nosifer", sans-serif;
+    font-weight: 800;
+    font-size: 20px;  /* Увеличиваем размер шрифта */
+    font-style: normal;
+    text-shadow: #0f0f0f 3px 2px;
+    color: white;  /* Меняем цвет шрифта на белый */
+}
+
+.footer-link a {
+    position: relative;
+    width: 60px;
+    height: 30px;  /* Увеличиваем высоту кнопки */
+    left: -755px;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    top: 310px; /* Переопределяем значение */
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;  /* цвет текста для обычного состояния */
+    text-decoration: none;  /* убираем подчеркивание */
+    transition: color 0.3s;  /* задаем плавный переход при изменении цвета */
+}
+
+.footer-link a:hover {
+    color: white;  /* цвет текста при наведении курсора */
+    background-color: black;  /* задаем фон при наведении для контраста */
+    border-radius: 5px;  /* закругляем углы */
+    height: 30px;
+    weight: 3000px;
+}
+.joinBtn {
+    position: relative;
+    width: center;  /* Увеличиваем ширину кнопки */
+    height: 35px;  /* Увеличиваем высоту кнопки */
+    left: 0px;  /* Если увеличиваем ширину кнопки, можно подвинуть позиционирование */
+    top: 5px; /* Переопределяем значение */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Nosifer", sans-serif;
+    font-weight: 800;
+    font-size: 20px;  /* Увеличиваем размер шрифта */
+    font-style: normal;
+    text-shadow: #0f0f0f 2.5px 1.25px;
+    color: white;  /* Меняем цвет шрифта на белый */
+    background: black;
+    border-radius: 10px;
 }

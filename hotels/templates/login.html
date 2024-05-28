@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="ru">
+<html class="htmlLogin" lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,22 +12,24 @@
 <body>
 
 <header>
-    <h1>Вход</h1>
+    <h1 class="loginText">Вход</h1>
 </header>
 
 <main>
-    <form method="POST">
-        {% csrf_token %}
-        <fieldset>
-            <legend>Вход</legend>
-            {{ form }}
-        </fieldset>
-        <button type="submit">Войти</button>
+    <form method="POST" class="formLogin">
+    {% csrf_token %}
+    <fieldset>
+        <label for="id_username" class="username-input">{{ form.username.label }}</label>
+        {{ form.username }}
+        <label for="id_password" class="password-input">{{ form.password.label }}</label>
+        {{ form.password }}
+    </fieldset>
+    <button class="loginJoinBtn" type="submit">Войти</button>
     </form>
 </main>
 
 <footer>
-    <div>
+    <div class="smallRegisterBtn">
         <small>
             <a href="{% url 'register' %}">Регистрация</a>
         </small>
